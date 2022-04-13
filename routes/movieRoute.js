@@ -7,7 +7,6 @@ const jwt = require('jsonwebtoken');
 const {getToken, COOKIE_OPTIONS, getRefreshToken, verifyUser} = require('../authenticate');
 
 router.post("/saveMovie", verifyUser,(req,res,next) => {
-    //res.send({title: req.body.title});
     const newMovie = {
         "title": req.body.title,
         "poster_path": req.body.poster_path,
@@ -41,7 +40,6 @@ router.post("/saveMovie", verifyUser,(req,res,next) => {
 router.get("/favorites", verifyUser, (req, res, next) => {
     User.findById(req.user._id).then( (user) => {
         const favoriteMovieList = user.movies;
-        // console.log(favoriteMovieList);
         res.send({movieList: favoriteMovieList});
     }, 
     (err)=> next(err)

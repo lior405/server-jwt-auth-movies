@@ -110,7 +110,6 @@ router.post("/login", passport.authenticate("local"), (req,res,next) => {
 
 
 router.post("/signup", (req,res, next)=> {
-    //verify first name is not empty.
     if(!req.body.firstName) {
         res.statusCode = 500;
         res.send({
